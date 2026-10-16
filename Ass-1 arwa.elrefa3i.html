@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Misr Travels — Weekly Places</title>
+  <style>
+    :root{
+      --page-bg: #0d2c47;
+      --card-bg: #102a43;
+      --card-inner: #1a4263;
+      --accent: #f39c12;
+      --muted: #bdc3c7;
+      --border: #34495e;
+      --text: #ecf0f1;
+      --gap: 20px;
+      --max-width: 1100px;
+      --radius: 8px;
+      --shadow: 0 6px 18px rgba(0,0,0,0.35);
+    }
+
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--page-bg);
+      color: var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding: clamp(16px, 3vw, 40px);
+      display:flex;
+      justify-content:center;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+      margin:0 auto;
+    }
+
+    header.site-header{
+      margin-bottom: var(--gap);
+      display:flex;
+      align-items:baseline;
+      gap:18px;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+
+    .brand {
+      display:flex;
+      align-items:baseline;
+      gap:12px;
+    }
+
+    .brand h1{
+      margin:0;
+      color:var(--accent);
+      font-size:clamp(20px,2.4vw,32px);
+      letter-spacing:1px;
+    }
+
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    /* grid of cards */
+    .grid{
+      display:grid;
+      gap:var(--gap);
+      grid-template-columns: repeat(2, 1fr); /* two cards per row by default */
+    }
+
+    /* larger screens show 3 columns */
+    @media(min-width:1100px){
+      .grid{ grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* single column for small screens */
+    @media(max-width:640px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .place-card{
+      background: linear-gradient(180deg, rgba(26,66,99,0.95), rgba(16,42,67,0.95));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display:flex;
+      overflow:hidden;
+      box-shadow:none;
+      transition: transform .18s ease, box-shadow .18s ease;
+      align-items:stretch;
+      min-height:120px;
+    }
+
+    .place-card:focus-within,
+    .place-card:hover{
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+      outline: none;
+    }
+
+    /* image column */
+    .place-media{
+      flex:0 0 180px;
+      min-width:120px;
+      height:140px;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* content column */
+    .place-body{
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      flex:1;
+    }
+
+    .place-title{
+      font-weight:700;
+      font-size:15px;
+      margin:0;
+      color:var(--text);
+    }
+
+    .place-desc{
+      margin:0;
+      font-size:13px;
+      color:var(--text);
+      opacity:0.95;
+      line-height:1.4;
+    }
+
+    .meta{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      font-size:13px;
+      color:var(--muted);
+      margin-top:4px;
+    }
+
+    .badge{
+      background: rgba(0,0,0,0.18);
+      color:var(--text);
+      padding:6px 8px;
+      border-radius:6px;
+      font-weight:600;
+      font-size:13px;
+      border:1px solid rgba(255,255,255,0.04);
+    }
+
+    .price{
+      margin-left:auto;
+      background: linear-gradient(90deg,#ffb86b,#f39c12);
+      color:#08121a;
+      padding:6px 10px;
+      border-radius:8px;
+      font-weight:700;
+      font-size:13px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    }
+
+    .actions{
+      margin-top:auto;
+      display:flex;
+      gap:10px;
+    }
+
+    .btn{
+      background:transparent;
+      color:var(--text);
+      border:1px solid rgba(255,255,255,0.08);
+      padding:8px 10px;
+      font-size:13px;
+      border-radius:6px;
+      cursor:pointer;
+    }
+
+    .btn.primary{
+      background:var(--accent);
+      color:#08121a;
+      border:none;
+      font-weight:700;
+    }
+
+    /* make the card stack vertically on small screens (img on top) */
+    @media(max-width:520px){
+      .place-card{
+        flex-direction:column;
+      }
+      .place-media{ width:100%; height:170px; flex:0 0 auto; }
+    }
+
+    /* accessible focus styles */
+    .btn:focus, .place-card:focus-within { box-shadow: 0 0 0 3px rgba(243,156,18,0.18); }
+  </style>
+</head>
+<body>
+  <main class="container" role="main" aria-labelledby="page-title">
+    <header class="site-header" role="banner">
+      <div class="brand" aria-hidden="false">
+        <h1 id="page-title">MISR TRAVELS</h1>
+        <span class="subtitle">Weekly featured places for our clients</span>
+      </div>
+
+      <div aria-hidden="true" style="color:var(--muted);font-size:13px;">
+        Curated offers — updated weekly
+      </div>
+    </header>
+
+    <section class="grid" aria-label="Places list">
+      <!-- Card 1 -->
+      <article class="place-card" aria-labelledby="place-1-title" role="article">
+        <img class="place-media" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop" alt="Beach resort in Sharm El Sheikh" />
+        <div class="place-body">
+          <h2 id="place-1-title" class="place-title">Sharm El Sheikh — 4★ Beach Resort</h2>
+          <p class="place-desc">Relax by the Red Sea at a 4-star hotel with full board and daily excursions available. Great for snorkeling and sun.</p>
+          <div class="meta">
+            <span class="badge">Location: Sharm El Sheikh</span>
+            <span class="badge">Duration: Flexible stays</span>
+            <span class="price" aria-label="Price 1,000 Egyptian pounds">1,000 LE</span>
+          </div>
+          <div class="actions" role="group" aria-label="Actions for Sharm El Sheikh">
+            <button class="btn" type="button">Details</button>
+            <button class="btn primary" type="button">Book</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="place-card" aria-labelledby="place-2-title" role="article">
+        <img class="place-media" src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?q=80&w=1200&auto=format&fit=crop" alt="Historic area in Cairo" />
+        <div class="place-body">
+          <h2 id="place-2-title" class="place-title">Ancient Cairo Walking Tour</h2>
+          <p class="place-desc">A 6-hour guided visit through the historic heart of Cairo. See churches, mosques and local markets with a professional guide.</p>
+          <div class="meta">
+            <span class="badge">Location: Old Cairo</span>
+            <span class="badge">Duration: 6 hours</span>
+            <span class="price" aria-label="Price on request">On request</span>
+          </div>
+          <div class="actions" role="group" aria-label="Actions for Ancient Cairo">
+            <button class="btn">Details</button>
+            <button class="btn primary">Book</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="place-card" aria-labelledby="place-3-title" role="article">
+        <img class="place-media" src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1200&auto=format&fit=crop" alt="The Pyramids of Giza" />
+        <div class="place-body">
+          <h2 id="place-3-title" class="place-title">Giza Pyramids Day Trip</h2>
+          <p class="place-desc">See the Pyramids and the Sphinx with trained guides. Includes transport and entrance fees. Ideal 6-hour schedule.</p>
+          <div class="meta">
+            <span class="badge">Location: Giza</span>
+            <span class="badge">Duration: 6 hours</span>
+            <span class="price" aria-label="Price 500 Egyptian pounds">500 LE</span>
+          </div>
+          <div class="actions" role="group" aria-label="Actions for Giza Pyramids">
+            <button class="btn">Details</button>
+            <button class="btn primary">Book</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="place-card" aria-labelledby="place-4-title" role="article">
+        <img class="place-media" src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?q=80&w=1200&auto=format&fit=crop" alt="Luxor temples and river view" />
+        <div class="place-body">
+          <h2 id="place-4-title" class="place-title">Luxor — 5★ Temple & Nile Stay</h2>
+          <p class="place-desc">A 6-day cultural trip visiting the Valley of the Kings, Karnak and Luxor temples with premium accommodation at a 5-star hotel.</p>
+          <div class="meta">
+            <span class="badge">Location: Luxor</span>
+            <span class="badge">Duration: 6 days</span>
+            <span class="price" aria-label="Price 1,500 Egyptian pounds">1,500 LE</span>
+          </div>
+          <div class="actions" role="group" aria-label="Actions for Luxor">
+            <button class="btn">Details</button>
+            <button class="btn primary">Book</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="place-card" aria-labelledby="place-5-title" role="article">
+        <img class="place-media" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop" alt="Red Sea coastline" />
+        <div class="place-body">
+          <h2 id="place-5-title" class="place-title">Red Sea Day Excursion</h2>
+          <p class="place-desc">A fun 8-hour excursion on the Red Sea coast. Swimming, snorkeling and beach time — a quick getaway at an affordable price.</p>
+          <div class="meta">
+            <span class="badge">Location: Red Sea</span>
+            <span class="badge">Duration: 8 hours</span>
+            <span class="price" aria-label="Price 500 Egyptian pounds">500 LE</span>
+          </div>
+          <div class="actions" role="group" aria-label="Actions for Red Sea">
+            <button class="btn">Details</button>
+            <button class="btn primary">Book</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="place-card" aria-labelledby="place-6-title" role="article">
+        <img class="place-media" src="https://images.unsplash.com/photo-1505765057293-8b4b7eed7611?q=80&w=1200&auto=format&fit=crop" alt="Giza pyramids close-up" />
+        <div class="place-body">
+          <h2 id="place-6-title" class="place-title">Pyramids Experience — Classic</h2>
+          <p class="place-desc">A compact 6-hour visit focused on the pyramids and photo stops. Perfect for travelers with limited time.</p>
+          <div class="meta">
+            <span class="badge">Location: Giza</span>
+            <span class="badge">Duration: 6 hours</span>
+            <span class="price" aria-label="Price 500 Egyptian pounds">500 LE</span>
+          </div>
+          <div class="actions" role="group" aria-label="Actions for Pyramids">
+            <button class="btn">Details</button>
+            <button class="btn primary">Book</button>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
