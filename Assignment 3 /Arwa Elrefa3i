@@ -1,0 +1,253 @@
+Solution 1.
+<?php
+$age = 20; // يمكنك تغيير القيمة للتجربة
+
+if ($age >= 18) {
+    echo "تمت الموافقة، يمكنك تسجيل الدخول إلى الموقع.";
+} else {
+    echo "عذرًا، لم تتم الموافقة لأن السن أقل من 18.";
+}
+?>
+==================
+Solution 2.
+<?php
+function calculate($num1, $num2) {
+    $product = $num1 * $num2;
+    $difference = $num1 - $num2;
+    
+    echo "حاصل الضرب: " . $product . "<br>";
+    echo "الفرق بينهما: " . $difference . "<br>";
+    
+    if ($num2 != 0) {
+        $quotient = $num1 / $num2;
+        echo "خارج القسمة: " . $quotient . "<br>";
+    } else {
+        echo "لا يمكن القسمة على صفر.<br>";
+    }
+}
+
+// تجربة الدالة
+calculate(10, 5);
+?>
+==================
+Solution 3.
+<?php
+function sumArray($arr) {
+    $sum = 0;
+    foreach ($arr as $number) {
+        $sum += $number;
+    }
+    return $sum;
+}
+
+// تجربة الدالة
+$my_array = array(5, 10, 15);
+echo "مجموع المصفوفة هو: " . sumArray($my_array);
+?>
+==================
+Solution 4.
+<?php
+$films = array("Fast", "Predestination", "Persuit", "Prestige");
+$keyword = "avatar";
+
+$found = false;
+foreach ($films as $film) {
+    if ($film == $keyword) {
+        $found = true;
+        break; // الخروج من اللوب فور إيجاد الفيلم
+    }
+}
+
+if ($found) {
+    echo "yes";
+} else {
+    echo "no";
+}
+?>
+==================
+Solution 5.
+<?php
+function RouteBubble($arr) {
+    $n = count($arr);
+    for ($i = 0; $i < $n - 1; $i++) {
+        for ($j = 0; $j < $n - $i - 1; $j++) {
+            if ($arr[$j] > $arr[$j + 1]) {
+                // تبديل العناصر
+                $temp = $arr[$j];
+                $arr[$j] = $arr[$j + 1];
+                $arr[$j + 1] = $temp;
+            }
+        }
+    }
+    return $arr;
+}
+
+// تجربة الدالة
+$arr = array(64, 34, 25, 12, 22, 11, 90);
+print_r(RouteBubble($arr));
+?>
+==================
+Solution 6.
+<?php
+$tests = array(5, 4, 9, 3, 1, 7, 8, 6);
+
+$max = $tests[0];
+foreach ($tests as $number) {
+    if ($number > $max) {
+        $max = $number;
+    }
+}
+
+echo "Output: " . $max; // النتيجة ستكون 9
+?>
+==================
+Solution 7.
+<?php
+$films = array("avatar", "Prestige", "avatar", "Prestige");
+$keyword = "avatar";
+
+$count = 0;
+foreach ($films as $film) {
+    if ($film == $keyword) {
+        $count++;
+    }
+}
+
+echo "النتيجة ستكون " . $count; // النتيجة ستكون 2
+?>
+==================
+Solution 8.
+<?php
+function RouterRandomPass($length) {
+    $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    $randomString = '';
+    
+    for ($i = 0; $i < $length; $i++) {
+        $index = rand(0, strlen($characters) - 1);
+        $randomString .= $characters[$index];
+    }
+    
+    return $randomString;
+}
+
+// تجربة الدالة لتوليد كلمة مرور بطول 8 حقول
+echo RouterRandomPass(8);
+?>
+==================
+Solution 9.
+<?php
+$tests = array(1, "tariq", 1.5, true, 7, 's', false);
+
+// 1. باستخدام Loop For
+echo "--- باستخدام FOR --- <br>";
+for ($i = 0; $i < count($tests); $i++) {
+    if (is_bool($tests[$i])) {
+        continue;
+    }
+    echo $tests[$i] . " ";
+}
+
+echo "<br><br>";
+
+// 2. باستخدام Loop While
+echo "--- باستخدام WHILE --- <br>";
+$j = 0;
+while ($j < count($tests)) {
+    if (!is_bool($tests[$j])) {
+        echo $tests[$j] . " ";
+    }
+    $j++;
+}
+?>
+==================
+Solution 10.
+<?php
+$tests = array(6, 4, 9, 3, 12, 8, 7);
+
+// استخدام الدالة الجاهزة sort لترتيب المصفوفة تصاعدياً
+sort($tests);
+
+echo "output:<br>";
+foreach ($tests as $num) {
+    echo $num . " ";
+}
+?>
+==================
+Solution 11.
+<?php
+$arr1 = array('a', 'b', 'c', 'd');
+$arr2 = array('c', 'd', 'e', 'f');
+
+$common = array();
+
+foreach ($arr1 as $val1) {
+    foreach ($arr2 as $val2) {
+        if ($val1 == $val2) {
+            $common[] = $val1;
+        }
+    }
+}
+
+// طباعة النتيجة بالشكل المطلوب c - d
+echo implode(" - ", $common);
+?>
+==================
+Solution 12.
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>حساب متجر إلكتروني</title>
+</head>
+<body>
+
+<form action="" method="POST">
+    <label>سعر المنتج:</label>
+    <input type="text" name="price" required><br><br>
+    
+    <label>عدد القطع:</label>
+    <input type="text" name="quantity" required><br><br>
+    
+    <input type="submit" name="submit" value="احسب الفاتورة">
+</form>
+
+<hr>
+
+<?php
+if (isset($_POST['submit'])) {
+    $price = $_POST['price'];
+    $quantity = $_POST['quantity'];
+
+    // التحقق للتأكد من أن المدخلات أرقام وليست حروف
+    if (!is_numeric($price) || !is_numeric($quantity)) {
+        echo "<span style='color:red;'>خطأ: يرجى إدخال أرقام فقط بدلاً من الحروف!</span>";
+    } 
+    // التحقق من الأرقام السالبة
+    elseif ($price < 0 || $quantity < 0) {
+        echo "<span style='color:red;'>رقم سالب! منفضلك ادخل ارقام موجبه</span>";
+    } 
+    // الحسابات في حالة كانت المدخلات صحيحة
+    else {
+        $total_before_discount = $price * $quantity;
+        
+        // تحديد نسبة الخصم
+        if ($total_before_discount < 1000) {
+            $discount_percentage = 0.10; // 10%
+        } else {
+            $discount_percentage = 0.15; // 15%
+        }
+        
+        $discount_value = $total_before_discount * $discount_percentage;
+        $total_after_discount = $total_before_discount - $discount_value;
+        
+        // عرض النتائج على الشاشة
+        echo "<h3>تفاصيل الفاتورة:</h3>";
+        echo "السعر الكلي قبل الخصم: " . $total_before_discount . " ج<br>";
+        echo " الخصم (" . ($discount_percentage * 100) . "%): " . $discount_value . " ج<br>";
+        echo "السعر الكلي بعد الخصم: " . $total_after_discount . " ج<br>";
+    }
+}
+?>
+
+</body>
+</html>
