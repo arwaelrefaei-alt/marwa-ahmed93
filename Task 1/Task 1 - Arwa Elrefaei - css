@@ -1,0 +1,109 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.container {
+    display: flex;
+    max-width: 900px;
+    margin: 0 auto;
+    align-items: center;
+    gap: 30px;
+}
+
+.doctor-image {
+    flex: 1;
+}
+
+.doctor-image img {
+    width: 100%;
+    max-width: 350px;
+    display: block;
+}
+
+.form-section {
+    flex: 1.5;
+}
+
+h1 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.red-line {
+    border: none;
+    height: 2px;
+    background-color: #d9534f;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.form-group.align-top {
+    align-items: flex-start;
+}
+
+.form-group > label {
+    width: 140px;
+    font-size: 14px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"],
+input[type="tel"],
+textarea {
+    padding: 4px 6px;
+    border: 1px solid #999;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+
+.two-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.two-inputs input {
+    width: 120px;
+}
+
+textarea {
+    width: 250px;
+}
+
+.radio-group label {
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+.checkbox-group p {
+    margin: 0 0 5px 0;
+}
+
+.checkbox-group label {
+    margin-bottom: 3px;
+}
+
+button {
+    padding: 3px 12px;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+}
