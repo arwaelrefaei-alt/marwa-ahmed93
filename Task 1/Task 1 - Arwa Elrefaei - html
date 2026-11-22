@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Appointment Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="doctor-image">
+            <img src="https://freepik.com" alt="Doctor">
+        </div>
+
+        <div class="form-section">
+            <h1>Doctor Appointment Form</h1>
+            <hr class="red-line">
+
+            <form>
+                <div class="form-group">
+                    <label>Appointment Date</label>
+                    <input type="date">
+                </div>
+
+                <div class="form-group">
+                    <label>Appointment Time</label>
+                    <input type="time">
+                </div>
+
+                <div class="form-group">
+                    <label>Name</label>
+                    <div class="two-inputs">
+                        <input type="text" placeholder="First">
+                        <input type="text" placeholder="Last">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Gender</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="gender" value="male"> Male</label>
+                        <label><input type="radio" name="gender" value="female" checked> Female</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" placeholder="####">
+                </div>
+
+                <div class="form-group">
+                    <label>Address</label>
+                    <div class="two-inputs">
+                        <input type="text" placeholder="city">
+                        <input type="text" placeholder="state">
+                    </div>
+                </div>
+
+                <div class="form-group align-top">
+                    <label>Your Query</label>
+                    <textarea rows="4"></textarea>
+                </div>
+
+                <div class="form-group align-top">
+                    <label>Appointment Type</label>
+                    <div class="checkbox-group">
+                        <p>Select which appointment type(s) you require</p>
+                        <label><input type="checkbox" checked> Cervix checkup</label>
+                        <label><input type="checkbox" checked> Heart checkup</label>
+                        <label><input type="checkbox"> Eye check-up</label>
+                        <label><input type="checkbox"> Hearing Test</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label></label>
+                    <button type="submit">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
